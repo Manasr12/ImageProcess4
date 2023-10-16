@@ -146,6 +146,7 @@ BEGIN
         MENUITEM "&Negative",                   ID_FILTER_NEGATIVE
         MENUITEM "Dim",                         ID_FILTER_DIM
         MENUITEM "Tint",                        ID_FILTER_TINT
+        MENUITEM "Lowpass",                     ID_FILTER_LOWPASS
     END
     POPUP "&Mouse"
     BEGIN
@@ -191,6 +192,10 @@ BEGIN
     BEGIN
         MENUITEM "Fill White",                  ID_GENERATE_FILLWHITE
         MENUITEM "Fill Green",                  ID_GENERATE_FILLGREEN
+        MENUITEM "Fill Firebrick",              ID_GENERATE_FILLFIREBRICK
+        MENUITEM "Fill HorizantalGradient ",    ID_GENERATE_FILLHORIZANTALGRADIENT
+        MENUITEM "Fill VerticalGreenGradient",  ID_GENERATE_FILLVERTICALGREENGRADIENT
+        MENUITEM "Fill DiagonalGradient",       ID_GENERATE_FILLDIAGONALGRADIENT
     END
     POPUP "&Mouse"
     BEGIN

@@ -36,6 +36,10 @@ BEGIN_MESSAGE_MAP(CImageGenerateDoc, CDocument)
     //}}AFX_MSG_MAP
     ON_COMMAND(ID_GENERATE_FILLWHITE, &CImageGenerateDoc::OnGenerateFillwhite)
     ON_COMMAND(ID_GENERATE_FILLGREEN, &CImageGenerateDoc::OnGenerateFillgreen)
+    ON_COMMAND(ID_GENERATE_FILLFIREBRICK, &CImageGenerateDoc::OnGenerateFillfirebrick)
+    ON_COMMAND(ID_GENERATE_FILLHORIZANTALGRADIENT, &CImageGenerateDoc::OnGenerateFillhorizantalgradient)
+    ON_COMMAND(ID_GENERATE_FILLVERTICALGREENGRADIENT, &CImageGenerateDoc::OnGenerateFillverticalgreengradient)
+    ON_COMMAND(ID_GENERATE_FILLDIAGONALGRADIENT, &CImageGenerateDoc::OnGenerateFilldiagonalgradient)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -219,6 +223,82 @@ void CImageGenerateDoc::OnGenerateFillgreen()
             m_image[r][c * 3 + 0] = 0;
             m_image[r][c * 3 + 1] = 255;
             m_image[r][c * 3 + 2] = 0;
+        }
+    }
+
+    UpdateAllViews(NULL);// TODO: Add your command handler code here
+}
+
+
+void CImageGenerateDoc::OnGenerateFillfirebrick()
+{
+    for (int r = 0; r < m_image.GetHeight(); r++)
+    {
+        // Looping over the columns of the image
+        for (int c = 0; c < m_image.GetWidth(); c++)
+        {
+            m_image[r][c * 3 + 0] = 34;  // Blue component
+            m_image[r][c * 3 + 1] = 34;  // Green component
+            m_image[r][c * 3 + 2] = 178; // Red component
+        }
+    }
+
+    UpdateAllViews(NULL);
+}
+
+
+void CImageGenerateDoc::OnGenerateFillhorizantalgradient()
+{
+    for (int r = 0; r < m_image.GetHeight(); r++)
+    {
+        for (int c = 0; c < m_image.GetWidth(); c++)
+        {
+            BYTE intensity = BYTE(float(c) / float(m_image.GetWidth() - 1) * 255);
+            m_image[r][c * 3 + 0] = intensity; // Blue component
+            m_image[r][c * 3 + 1] = intensity; // Green component
+            m_image[r][c * 3 + 2] = intensity; // Red component
+        }
+    }
+
+    UpdateAllViews(NULL);// TODO: Add your command handler code here
+}
+
+
+void CImageGenerateDoc::OnGenerateFillverticalgreengradient()
+{
+    for (int r = 0; r < m_image.GetHeight(); r++)
+    {
+        BYTE blue = BYTE((m_image.GetHeight() - 1 - float(r)) / float(m_image.GetHeight() - 1) * 128);
+        BYTE green = BYTE((m_image.GetHeight() - 1 - float(r)) / float(m_image.GetHeight() - 1) * 255);
+        BYTE red = BYTE((m_image.GetHeight() - 1 - float(r)) / float(m_image.GetHeight() - 1) * 200);
+
+        for (int c = 0; c < m_image.GetWidth(); c++)
+        {
+            m_image[r][c * 3 + 0] = blue;   // Blue component
+            m_image[r][c * 3 + 1] = green;  // Green component
+            m_image[r][c * 3 + 2] = red;    // Red component
+        }
+    }
+
+    UpdateAllViews(NULL);// TODO: Add your command handler code here
+}
+
+
+void CImageGenerateDoc::OnGenerateFilldiagonalgradient()
+{
+    for (int r = 0; r < m_image.GetHeight(); r++)
+    {
+        for (int c = 0; c < m_image.GetWidth(); c++)
+        {
+            float diag_ratio = float(r + c) / (m_image.GetHeight() + m_image.GetWidth() - 2);
+
+            BYTE blue = BYTE((1 - diag_ratio) * 0 + diag_ratio * 128); // Green to Purple
+            BYTE green = BYTE((1 - diag_ratio) * 255 + diag_ratio * 0); // Green to Purple
+            BYTE red = BYTE((1 - diag_ratio) * 0 + diag_ratio * 128); // Green to Purple
+
+            m_image[r][c * 3 + 0] = blue;   // Blue component
+            m_image[r][c * 3 + 1] = green;  // Green component
+            m_image[r][c * 3 + 2] = red;    // Red component
         }
     }
 

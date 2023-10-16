@@ -61,6 +61,10 @@ private:
 public:
     afx_msg void OnGenerateFillwhite();
     afx_msg void OnGenerateFillgreen();
+    afx_msg void OnGenerateFillfirebrick();
+    afx_msg void OnGenerateFillhorizantalgradient();
+    afx_msg void OnGenerateFillverticalgreengradient();
+    afx_msg void OnGenerateFilldiagonalgradient();
 };
 
 /////////////////////////////////////////////////////////////////////////////
