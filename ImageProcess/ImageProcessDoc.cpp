@@ -43,6 +43,8 @@ BEGIN_MESSAGE_MAP(CImageProcessDoc, CDocument)
     ON_UPDATE_COMMAND_UI(ID_MOUSE_CARTMAN, OnUpdateMouseCartman)
     //}}AFX_MSG_MAP
     ON_COMMAND(ID_MOUSE_CARTMANPARAMETERS, OnMouseCartmanparameters)
+    ON_COMMAND(ID_FILTER_DIM, &CImageProcessDoc::OnFilterDim)
+    ON_COMMAND(ID_FILTER_TINT, &CImageProcessDoc::OnFilterTint)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -598,3 +600,46 @@ void CImageProcessDoc::OnMouseCartmanparameters()
     }
 }
 
+
+
+void CImageProcessDoc::OnFilterDim()
+{
+
+    BeginWaitCursor();
+
+    // Make the output image the same size as the input image
+    m_image2.SetSameSize(m_image1);
+
+    for (int r = 0; r < m_image2.GetHeight(); r++)
+    {
+        for (int c = 0; c < m_image2.GetWidth() * 3; c++)
+        {
+            m_image2[r][c] = BYTE(m_image1[r][c] * 0.33);
+        }
+    }
+
+    UpdateAllViews(NULL);
+    EndWaitCursor();// TODO: Add your command handler code here
+}
+
+
+void CImageProcessDoc::OnFilterTint()
+{
+    BeginWaitCursor();
+
+    // Make the output image the same size as the input image
+    m_image2.SetSameSize(m_image1);
+
+    for (int r = 0; r < m_image2.GetHeight(); r++)
+    {
+        for (int c = 0; c < m_image2.GetWidth(); c++)
+        {
+            m_image2[r][c * 3] = BYTE(m_image1[r][c * 3] * 0.66);       // Blue
+            m_image2[r][c * 3 + 1] = BYTE(m_image1[r][c * 3 + 1] * 1);   // Green
+            m_image2[r][c * 3 + 2] = BYTE(m_image1[r][c * 3 + 2] * 0.33);   // Red
+        }
+    }
+
+    UpdateAllViews(NULL);
+    EndWaitCursor();// TODO: Add your command handler code here
+}

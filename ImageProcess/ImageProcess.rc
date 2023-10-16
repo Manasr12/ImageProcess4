@@ -66,7 +66,9 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\ImageProcess.ico"
+
 IDR_BITMAPTYPE          ICON                    "res\\ImageProcessDoc.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -74,6 +76,7 @@ IDR_BITMAPTYPE          ICON                    "res\\ImageProcessDoc.ico"
 //
 
 IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -141,6 +144,8 @@ BEGIN
     BEGIN
         MENUITEM "&Copy",                       ID_FILTER_COPY
         MENUITEM "&Negative",                   ID_FILTER_NEGATIVE
+        MENUITEM "Dim",                         ID_FILTER_DIM
+        MENUITEM "Tint",                        ID_FILTER_TINT
     END
     POPUP "&Mouse"
     BEGIN
@@ -185,6 +190,7 @@ BEGIN
     POPUP "&Generate"
     BEGIN
         MENUITEM "Fill White",                  ID_GENERATE_FILLWHITE
+        MENUITEM "Fill Green",                  ID_GENERATE_FILLGREEN
     END
     POPUP "&Mouse"
     BEGIN

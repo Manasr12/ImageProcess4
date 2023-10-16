@@ -77,6 +77,9 @@ private:
 
     BOOL     m_nearest;
     BOOL     m_transparent;
+public:
+    afx_msg void OnFilterDim();
+    afx_msg void OnFilterTint();
 };
 
 /////////////////////////////////////////////////////////////////////////////

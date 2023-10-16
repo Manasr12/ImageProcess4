@@ -31,6 +31,9 @@
 #define ID_FILE_NEWEMPTYIMAGE32798      32798
 #define ID_FILE_NEWEMPTYIMAGE32799      32799
 #define ID_FILTER_ENHANCE               32800
+#define ID_GENERATE_FILLGREEN           32801
+#define ID_FILTER_DIM                   32802
+#define ID_FILTER_TINT                  32803
 
 // Next default values for new objects
 // 
@@ -38,7 +41,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
-#define _APS_NEXT_COMMAND_VALUE         32801
+#define _APS_NEXT_COMMAND_VALUE         32804
 #define _APS_NEXT_CONTROL_VALUE         1009
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

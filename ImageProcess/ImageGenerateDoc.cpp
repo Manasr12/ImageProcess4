@@ -35,6 +35,7 @@ BEGIN_MESSAGE_MAP(CImageGenerateDoc, CDocument)
     ON_COMMAND(ID_MOUSE_DRAW, OnMouseDraw)
     //}}AFX_MSG_MAP
     ON_COMMAND(ID_GENERATE_FILLWHITE, &CImageGenerateDoc::OnGenerateFillwhite)
+    ON_COMMAND(ID_GENERATE_FILLGREEN, &CImageGenerateDoc::OnGenerateFillgreen)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -205,4 +206,21 @@ void CImageGenerateDoc::MouseMove(int x, int y)
 
     UpdateAllViews(NULL);
     EndWaitCursor();
+}
+
+
+void CImageGenerateDoc::OnGenerateFillgreen()
+{
+    for (int r = 0; r < m_image.GetHeight(); r++)
+    {
+        // Looping over the columns of the image
+        for (int c = 0; c < m_image.GetWidth(); c++)
+        {
+            m_image[r][c * 3 + 0] = 0;
+            m_image[r][c * 3 + 1] = 255;
+            m_image[r][c * 3 + 2] = 0;
+        }
+    }
+
+    UpdateAllViews(NULL);// TODO: Add your command handler code here
 }

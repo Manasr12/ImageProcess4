@@ -60,6 +60,7 @@ private:
     int      m_clickcnt;
 public:
     afx_msg void OnGenerateFillwhite();
+    afx_msg void OnGenerateFillgreen();
 };
 
 /////////////////////////////////////////////////////////////////////////////
