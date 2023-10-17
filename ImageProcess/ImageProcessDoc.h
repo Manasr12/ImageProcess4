@@ -82,6 +82,7 @@ public:
     afx_msg void OnFilterTint();
     afx_msg void OnFilterLowpass();
     afx_msg void OnFilterMonochrome();
+    afx_msg void OnFilterMedian();
 };
 
 /////////////////////////////////////////////////////////////////////////////

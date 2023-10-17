@@ -43,6 +43,7 @@
 #define ID_GENERATE_VERITCALLINE        32810
 #define ID_GENERATE_DIAGONALLINE        32811
 #define ID_FILTER_MONOCHROME            32812
+#define ID_FILTER_MEDIAN                32813
 
 // Next default values for new objects
 // 
@@ -50,7 +51,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
-#define _APS_NEXT_COMMAND_VALUE         32813
+#define _APS_NEXT_COMMAND_VALUE         32814
 #define _APS_NEXT_CONTROL_VALUE         1009
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

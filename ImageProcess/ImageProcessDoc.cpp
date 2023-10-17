@@ -15,6 +15,8 @@
 #include <fstream>
 
 #include "ImageProcessDoc.h"
+#include <algorithm> // for std::sort
+#include <vector>    // for std::vector
 
 using namespace std;
 
@@ -47,6 +49,7 @@ BEGIN_MESSAGE_MAP(CImageProcessDoc, CDocument)
     ON_COMMAND(ID_FILTER_TINT, &CImageProcessDoc::OnFilterTint)
     ON_COMMAND(ID_FILTER_LOWPASS, &CImageProcessDoc::OnFilterLowpass)
     ON_COMMAND(ID_FILTER_MONOCHROME, &CImageProcessDoc::OnFilterMonochrome)
+    ON_COMMAND(ID_FILTER_MEDIAN, &CImageProcessDoc::OnFilterMedian)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -700,6 +703,42 @@ void CImageProcessDoc::OnFilterMonochrome()
             m_image2[r][c * 3 + 0] = avg; // Blue component
             m_image2[r][c * 3 + 1] = avg; // Green component
             m_image2[r][c * 3 + 2] = avg; // Red component
+        }
+    }
+
+    UpdateAllViews(NULL);
+    EndWaitCursor();// TODO: Add your command handler code here
+}
+
+
+void CImageProcessDoc::OnFilterMedian()
+{
+    BeginWaitCursor();
+
+    // Make the output image the same size as the input image
+    m_image2.SetSameSize(m_image1);
+
+    for (int r = 1; r < m_image2.GetHeight() - 1; r++)
+    {
+        for (int c = 1; c < m_image2.GetWidth() - 1; c++)
+        {
+            for (int color = 0; color < 3; color++)
+            {
+                std::vector<BYTE> neighbors;
+
+                // Collect the values of the neighboring pixels
+                for (int dr = -1; dr <= 1; dr++)
+                {
+                    for (int dc = -1; dc <= 1; dc++)
+                    {
+                        neighbors.push_back(m_image1[r + dr][(c + dc) * 3 + color]);
+                    }
+                }
+
+                // Sort the values and pick the middle one
+                std::sort(neighbors.begin(), neighbors.end());
+                m_image2[r][c * 3 + color] = neighbors[4]; // Median value
+            }
         }
     }
 
