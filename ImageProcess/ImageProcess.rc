@@ -196,6 +196,9 @@ BEGIN
         MENUITEM "Fill HorizantalGradient ",    ID_GENERATE_FILLHORIZANTALGRADIENT
         MENUITEM "Fill VerticalGreenGradient",  ID_GENERATE_FILLVERTICALGREENGRADIENT
         MENUITEM "Fill DiagonalGradient",       ID_GENERATE_FILLDIAGONALGRADIENT
+        MENUITEM "Horizantel Line",             ID_GENERATE_HORIZANTELLINE
+        MENUITEM "Veritcal Line",               ID_GENERATE_VERITCALLINE
+        MENUITEM "Diagonal Line",               ID_GENERATE_DIAGONALLINE
     END
     POPUP "&Mouse"
     BEGIN

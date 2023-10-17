@@ -65,6 +65,9 @@ public:
     afx_msg void OnGenerateFillhorizantalgradient();
     afx_msg void OnGenerateFillverticalgreengradient();
     afx_msg void OnGenerateFilldiagonalgradient();
+    afx_msg void OnGenerateHorizantelline();
+    afx_msg void OnGenerateVeritcalline();
+    afx_msg void OnGenerateDiagonalline();
 };
 
 /////////////////////////////////////////////////////////////////////////////

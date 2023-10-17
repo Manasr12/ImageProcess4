@@ -40,6 +40,9 @@ BEGIN_MESSAGE_MAP(CImageGenerateDoc, CDocument)
     ON_COMMAND(ID_GENERATE_FILLHORIZANTALGRADIENT, &CImageGenerateDoc::OnGenerateFillhorizantalgradient)
     ON_COMMAND(ID_GENERATE_FILLVERTICALGREENGRADIENT, &CImageGenerateDoc::OnGenerateFillverticalgreengradient)
     ON_COMMAND(ID_GENERATE_FILLDIAGONALGRADIENT, &CImageGenerateDoc::OnGenerateFilldiagonalgradient)
+    ON_COMMAND(ID_GENERATE_HORIZANTELLINE, &CImageGenerateDoc::OnGenerateHorizantelline)
+    ON_COMMAND(ID_GENERATE_VERITCALLINE, &CImageGenerateDoc::OnGenerateVeritcalline)
+    ON_COMMAND(ID_GENERATE_DIAGONALLINE, &CImageGenerateDoc::OnGenerateDiagonalline)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -300,6 +303,59 @@ void CImageGenerateDoc::OnGenerateFilldiagonalgradient()
             m_image[r][c * 3 + 1] = green;  // Green component
             m_image[r][c * 3 + 2] = red;    // Red component
         }
+    }
+
+    UpdateAllViews(NULL);// TODO: Add your command handler code here
+}
+
+
+void CImageGenerateDoc::OnGenerateHorizantelline()
+{
+    int r = 100;
+    for (int c = 0; c < m_image.GetWidth(); c++)
+    {
+        m_image[r][c * 3 + 0] = 0;
+        m_image[r][c * 3 + 1] = 0;
+        m_image[r][c * 3 + 2] = 255;
+    }
+    UpdateAllViews(NULL);// TODO: Add your command handler code here
+}
+
+
+void CImageGenerateDoc::OnGenerateVeritcalline()
+{
+    int start_col = 25 - 2; // Start 2 columns to the left of the center
+    int end_col = 25 + 2;   // End 2 columns to the right of the center
+
+    for (int r = 0; r < m_image.GetHeight(); r++)
+    {
+        for (int c = start_col; c <= end_col; c++)
+        {
+            m_image[r][c * 3 + 0] = 255; // Blue component
+            m_image[r][c * 3 + 1] = 0;   // Green component
+            m_image[r][c * 3 + 2] = 0;   // Red component
+        }
+    }
+
+    UpdateAllViews(NULL);// TODO: Add your command handler code here
+}
+
+
+void CImageGenerateDoc::OnGenerateDiagonalline()
+{
+    int start_r = 50, start_c = 50; // Starting point of the line
+    int end_r = 150, end_c = 150;   // Ending point of the line
+
+    // Calculate the slope of the line
+    float slope = float(end_r - start_r) / float(end_c - start_c);
+
+    for (int c = start_c; c <= end_c; c++)
+    {
+        int r = start_r + slope * (c - start_c); // Calculate the corresponding row
+
+        m_image[r][c * 3 + 0] = 255; // Blue component
+        m_image[r][c * 3 + 1] = 0;   // Green component
+        m_image[r][c * 3 + 2] = 0;   // Red component
     }
 
     UpdateAllViews(NULL);// TODO: Add your command handler code here
