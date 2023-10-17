@@ -81,6 +81,7 @@ public:
     afx_msg void OnFilterDim();
     afx_msg void OnFilterTint();
     afx_msg void OnFilterLowpass();
+    afx_msg void OnFilterMonochrome();
 };
 
 /////////////////////////////////////////////////////////////////////////////

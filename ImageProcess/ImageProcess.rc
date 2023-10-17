@@ -147,6 +147,7 @@ BEGIN
         MENUITEM "Dim",                         ID_FILTER_DIM
         MENUITEM "Tint",                        ID_FILTER_TINT
         MENUITEM "Lowpass",                     ID_FILTER_LOWPASS
+        MENUITEM "Monochrome",                  ID_FILTER_MONOCHROME
     END
     POPUP "&Mouse"
     BEGIN

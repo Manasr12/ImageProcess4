@@ -46,6 +46,7 @@ BEGIN_MESSAGE_MAP(CImageProcessDoc, CDocument)
     ON_COMMAND(ID_FILTER_DIM, &CImageProcessDoc::OnFilterDim)
     ON_COMMAND(ID_FILTER_TINT, &CImageProcessDoc::OnFilterTint)
     ON_COMMAND(ID_FILTER_LOWPASS, &CImageProcessDoc::OnFilterLowpass)
+    ON_COMMAND(ID_FILTER_MONOCHROME, &CImageProcessDoc::OnFilterMonochrome)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -674,4 +675,34 @@ void CImageProcessDoc::OnFilterLowpass()
 
     // Force a redraw
     UpdateAllViews(NULL); // TODO: Add your command handler code here
+}
+
+
+void CImageProcessDoc::OnFilterMonochrome()
+{
+    BeginWaitCursor();
+
+    // Make the output image the same size as the input image
+    m_image2.SetSameSize(m_image1);
+
+    for (int r = 0; r < m_image2.GetHeight(); r++)
+    {
+        for (int c = 0; c < m_image2.GetWidth(); c++)
+        {
+            BYTE blue = m_image1[r][c * 3 + 0];
+            BYTE green = m_image1[r][c * 3 + 1];
+            BYTE red = m_image1[r][c * 3 + 2];
+
+            // Calculate the average of the RGB values
+            BYTE avg = BYTE((blue + green + red) / 3.0 + 0.5); // Adding 0.5 for rounding
+
+            // Set the RGB values in the result to the average
+            m_image2[r][c * 3 + 0] = avg; // Blue component
+            m_image2[r][c * 3 + 1] = avg; // Green component
+            m_image2[r][c * 3 + 2] = avg; // Red component
+        }
+    }
+
+    UpdateAllViews(NULL);
+    EndWaitCursor();// TODO: Add your command handler code here
 }
